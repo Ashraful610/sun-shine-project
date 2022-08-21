@@ -11,11 +11,18 @@ const Header = () => {
     return (
         <div className='flex items-center justify-between h-16 bg-slate-0  md:px-10 px-5 py-2 rounded-full shadow-lg '>
             {/* --------------  company logo -----------------*/}
-            <div className='flex h-full items-center'>
-                <img src="https://i.ibb.co/yQXB43V/ed-tech-logo-removebg-preview.png" className='md:w-48 w-32  cursor-pointer' alt="" />
-               <Link to='/home' className='text-2xl mx-5 font-serif text-white cursor-pointer'>
-                  Home
-              </Link>
+            <div className='flex'>
+                <img src="https://i.ibb.co/yQXB43V/ed-tech-logo-removebg-preview.png" className='md:w-48 w-32 sm:block hidden cursor-pointer' alt="" />
+                <div className='flex h-full items-center'>
+                  {/* ------------------- user photo ----------------*/}
+                  <Link to='/home' className='text-2xl mx-5 font-serif text-white cursor-pointer'> Home  </Link>
+                     {
+                        user?.displayName && <p className='text-2xl font-serif text-white'>
+                            {user.displayName}
+                        </p>
+                     }
+                </div>
+              
             </div>           
             <div className='flex h-full items-center'>
                 {/* ----------------- sign in and sign out ----------------*/}

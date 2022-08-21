@@ -4,6 +4,9 @@ import Header from './Components/Header/Header';
 import { Routes, Route} from "react-router-dom";
 import Home from './Components/Home/Home';
 import SignUp from './Components/SignUp/SignUp';
+import Course from './Components/Course/Course';
+import Courses from './Components/Courses/Courses';
+import RequireAuth from './Components/RequireAuth/RequireAuth';
 
 
 function App() {
@@ -13,6 +16,11 @@ function App() {
       <Routes>
           <Route path='/' element={<Home></Home>}/>
           <Route path='/home' element={<Home></Home>}/>
+          <Route path='/course' element={
+            <RequireAuth>
+              <Courses></Courses>
+            </RequireAuth>
+          }/>
           <Route path='/signUp' element={<SignUp></SignUp>}/>
       </Routes>
       <Footer></Footer>

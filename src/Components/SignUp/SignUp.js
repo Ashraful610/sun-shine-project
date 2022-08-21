@@ -5,7 +5,7 @@ import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
-// import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 const SignUp = () => {
     const [login , setLogin] = useState(false);
@@ -21,6 +21,12 @@ const SignUp = () => {
       createLoading,
       createError,
     ] = useCreateUserWithEmailAndPassword(auth);
+
+    const [
+      signInWithEmailAndPassword,
+      signUser , 
+      signError 
+    ] = useSignInWithEmailAndPassword(auth);
   
     const [updateProfile, updating, updatingError] = useUpdateProfile(auth);
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -65,7 +71,6 @@ const SignUp = () => {
        }
       }
 
-  
       const handleSubmit = async  event => {
         event.preventDefault();
         if( email.email !== '' && password.password !== '' && name.name !== '') {
@@ -74,23 +79,27 @@ const SignUp = () => {
         }
     }
 
-    if (createError || updatingError || googleError || error) {
-      setNewError(createError?.message || updatingError?.message || googleError?.message ||error?.message)
+    const handleSignIn = event => {
+      event?.preventDefault();
+      if( email.email !== '' && password.password !== '') {
+        signInWithEmailAndPassword(email?.email, password?.password)      
+       }
     }
-    if (createLoading || updating ||googleLoading || loading) {
-      return  <Loading></Loading>
+
+    if (createError || updatingError || googleError || error || signError) {
+      setNewError(createError?.message || updatingError?.message || googleError?.message ||error?.message || signError?.message)
     }
-    if (user) {
-       console.log( createUser)
+    if(loading){
+      return <Loading></Loading>
     }
   
     return (
-        <div className="h-fit w-2/4 mx-auto p-5 ">
+        <div className="h-fit md:w-2/4 mx-auto p-5 ">
             <div className="backdrop-blur-sm bg-white/30 h-fit">
                 <h2 className='text-3xl text-white text-center font-bold p-3'>
                    { login ? 'Sign IN':'Sign Up' }
                 </h2>
-                <form className='p-5' onSubmit={handleSubmit}>
+                <form className='p-5' onSubmit={ handleSubmit}>
                     {/* ----------------- user name ----------------*/}
                     {
                         !login && <div>
@@ -121,7 +130,7 @@ const SignUp = () => {
                     }
                     {/* ------------ sign up and sign in button -------------- */}
                     {
-                        login ? <button type="submit" className='bg-gradient-to-r from-cyan-500 to-blue-500 border-0 text-white text-2xl px-10 py-2 rounded-full my-2 font-semibold'>
+                        login ? <button onClick={()=> handleSignIn()} className='bg-gradient-to-r from-cyan-500 to-blue-500 border-0 text-white text-2xl px-10 py-2 rounded-full my-2 font-semibold'>
                         Sign In
                       </button>:
                       <button type="submit" className='bg-gradient-to-r from-cyan-500 to-blue-500 border-0 text-white text-2xl px-10 py-2 rounded-full my-2 font-semibold'>
@@ -147,5 +156,4 @@ const SignUp = () => {
         </div>
     );
 };
-
 export default SignUp;
