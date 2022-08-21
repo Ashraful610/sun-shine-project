@@ -1,0 +1,35 @@
+[
+    {
+        "id":1,
+        "name": "Graphic Design",
+        "rating":5,
+        "durations":3,
+        "description":"Graphic design is a craft where professionals create visual content to communicate messages. ",
+        "img":"https://i.ibb.co/xm3QH16/beautiful-illustrations-design-inspiration-39.png"
+    },
+    {
+        "id":2,
+        "name": "Cyber Security",
+        "rating":5,
+        "durations":6,
+        "description":"Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks. ",
+        "img":"https://i.ibb.co/7KqXPJB/10-steps-cyber-security.jpg"
+    },
+    {
+        "id":3,
+        "name": "Web Development",
+        "rating":5,
+        "durations":4,
+        "description":"Web development refers to the building, creating, and maintaining of websites.",
+        "img":"https://i.ibb.co/1RmfFnt/depositphotos-80861052-stock-illustration-web-development-flat-illustration-concept.webp"
+    },
+    {
+        "id":4,
+        "name": "Social Media Marketing",
+        "rating":5,
+        "durations":3,
+        "description":"Social media marketing is the use of social media platforms and websites to promote a product or service.",
+        "img":"https://i.ibb.co/Gv6Bd9L/istockphoto-1346575545-170667a.jpg"
+    }
+
+]
